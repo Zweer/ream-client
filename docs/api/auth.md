@@ -155,3 +155,4 @@ TODO: Document 401/403 responses, token expiration, and refresh behavior
 |------|---------|----------|
 | 5001 | User API (auth, settings, notifications, subscriptions) | `https://reamstories.com:5001` |
 | 5002 | Story API (posts, stories, bookmarks) | `https://reamstories.com:5002` |
+| 5003 | Page API (author page management) | `https://reamstories.com:5003` |
