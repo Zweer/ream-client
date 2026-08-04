@@ -41,8 +41,8 @@ This project uses two specialized Kiro agents (`.kiro/agents/`):
 
 ### Workflow
 
-1. **Discovery phase:** Switch to `rev-eng` agent (`/agent swap rev-eng`). It uses Playwright MCP to navigate Ream, intercept network calls, and document endpoints in `docs/api/`
-2. **Implementation phase:** Switch to `dev` agent (`/agent swap dev`). It reads `docs/api/` and implements the library in `lib/`
+1. **Discovery phase:** Switch to `rev-eng` agent (`/agent swap rev-eng`). It uses Playwright MCP to navigate Ream, intercept network calls, and document endpoints in `docs/`
+2. **Implementation phase:** Switch to `dev` agent (`/agent swap dev`). It reads `docs/` and implements the library in `lib/`
 
 ### MCP Servers
 

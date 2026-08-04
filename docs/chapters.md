@@ -190,5 +190,5 @@ All Chapter API endpoints are on **port 5002**: `https://reamstories.com:5002`
 1. **Create** → `chapter/add` (creates empty chapter with title)
 2. **Write** → `chapter/paragraphs/add` (saves content)
 3. **Rename** → `chapter/update/title` (updates title)
-4. **Publish** → See `docs/api/publish.md`
+4. **Publish** → See `docs/publish.md`
 5. **Delete** → `chapter/delete` (permanent)
