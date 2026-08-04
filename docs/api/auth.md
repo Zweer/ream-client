@@ -129,6 +129,58 @@ After successful authentication, the client immediately calls:
 4. `POST /api/user/settings/get` — Gets user settings
    - Body: `{"UserKey": "<userkey>"}`
 
+### Notification Count Response
+
+```json
+{
+  "contentUpdates": {"ebook": 221, "audio": 0, "comic": 1},
+  "socialUpdates": {"post": 50, "followed": 0, "followRequest": 0, "reaction": 0, "reply": 0, "mention": 0, "chat": 0, "comment": 0},
+  "total": 272
+}
+```
+
+### Notification List
+
+**Endpoint:** `POST https://reamstories.com:5001/api/user/notification/list`
+
+**Request Body:**
+```json
+{
+  "Type": "content",
+  "PageNumber": 0,
+  "NotificationCount": 10
+}
+```
+
+**Response:** `200 OK`
+```json
+{
+  "Notifications": [
+    {
+      "IsRead": 1,
+      "Type": "content",
+      "SubType": "ebook",
+      "Message": "Chapter 27",
+      "Title": "The Marking — New Chapter!",
+      "RelativeURL": "/page/lcs65pr70c/story/mbjlxpktm",
+      "NotificationKey": "msdkhtfw5c5034",
+      "CreatedDate": "2026-08-03T18:33:19.000Z",
+      "ReferenceKey": "mbjlxpktm",
+      "SubReferenceKey": "msdkdwna8ca43d26",
+      "Resolution": null
+    }
+  ],
+  "Message": "Success."
+}
+```
+
+**Notes:**
+- `Type`: `"content"` (chapter releases) or `"social"` (posts, follows, reactions)
+- `SubType` for content: `"ebook"`, `"audio"`, `"comic"`
+- `SubType` for social: `"post"`, `"followed"`, `"reaction"`, `"reply"`, `"mention"`, `"comment"`
+- `NotificationCount` = items per page
+- `PageNumber` = 0-based page index
+
 ## Logout
 
 Logout is **client-side only** — no API call is made. The client:

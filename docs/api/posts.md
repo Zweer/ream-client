@@ -161,7 +161,25 @@ TODO: Document exact response body (likely returns PostKey)
 
 **Endpoint:** `POST https://reamstories.com:5003/api/page/post/update`
 
-TODO: Document by editing a post via the UI
+**Request Body:**
+```json
+{
+  "PostKey": "<post-key>",
+  "Content": "<p>Updated content here.</p>",
+  "PostTitle": "Updated Title",
+  "IsScheduled": false,
+  "ReleaseDate": null
+}
+```
+
+**Response:** `200 OK`
+
+TODO: Document exact response body
+
+**Notes:**
+- Only `PostKey`, `Content`, `PostTitle`, `IsScheduled`, `ReleaseDate` are sent
+- Tier visibility is NOT changed via this endpoint (likely a separate call)
+- `ReleaseDate` can be set to reschedule a post
 
 ## Post Lifecycle
 
