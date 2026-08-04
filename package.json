@@ -11,13 +11,13 @@
     "fiction",
     "serial"
   ],
-  "homepage": "https://github.com/nicvane/ream-client#readme",
+  "homepage": "https://github.com/Zweer/ream#readme",
   "bugs": {
-    "url": "https://github.com/nicvane/ream-client/issues"
+    "url": "https://github.com/Zweer/ream/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicvane/ream-client.git"
+    "url": "https://github.com/Zweer/ream.git"
   },
   "license": "MIT",
   "author": "Niccolò Vanin",
