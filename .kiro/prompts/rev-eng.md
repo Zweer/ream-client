@@ -138,6 +138,17 @@ After documenting an endpoint, replay it using Playwright's `request` API to con
 - **Test writes on test data only** — be careful with destructive operations
 - **Mark unknowns** — use `TODO:` for things needing further investigation
 
+## Clean-Up Guardrail
+
+**Leave Ream in the same state you found it.** Every session must be idempotent with respect to the platform's data.
+
+1. **Track** — maintain a mental list of every resource created during the session (posts, drafts, sections, media, subscribers, etc.)
+2. **Delete** — before ending the session, delete ALL resources you created, in reverse order
+3. **Verify** — after cleanup, confirm the resource is gone (e.g., check it returns 404 or no longer appears in list)
+4. **Report** — at session end, state explicitly: "Clean-up complete: all test resources deleted" or flag anything that couldn't be removed
+
+If a deletion fails, retry once. If it still fails, report it to the developer immediately so they can clean up manually.
+
 ## Git Rules
 
 **NEVER commit, push, or create tags.** At the end of every task (each area documented), suggest a conventional commit message following `.kiro/steering/commit-conventions.md`:
