@@ -30,6 +30,7 @@
       "command": "npx",
       "args": [
         "@playwright/mcp@latest",
+        "--browser=chromium",
         "--headless",
         "--caps=core,network,storage",
         "--console-level=info"
