@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Zweer/ream/compare/v1.0.1...v1.0.2) (2026-08-04)
+
+
+### Bug Fixes
+
+* :construction_worker: use lts/* for publish job ([9c6c97e](https://github.com/Zweer/ream/commit/9c6c97e02f75a23115a9f5693947d485d0e833ed))
+
 ## [1.0.1](https://github.com/Zweer/ream/compare/v1.0.0...v1.0.1) (2026-08-04)
 
 
