@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -45,3 +45,38 @@ jobs:
       - run: npm ci
 
       - run: npm test
+
+  release:
+    needs: [lint, test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: node
+
+      - uses: actions/checkout@v7
+        if: ${{ steps.release.outputs.release_created }}
+
+      - uses: actions/setup-node@v6
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: npm run build
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: npm publish --provenance --access public
+        if: ${{ steps.release.outputs.release_created }}
