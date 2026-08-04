@@ -127,8 +127,12 @@ All Post API endpoints are on **port 5003**: `https://reamstories.com:5003`
 ```
 
 **Response:** `200 OK`
-
-TODO: Document exact response body (likely returns PostKey)
+```json
+{
+  "PostKey": "msepbp4x6308e1",
+  "Message": "Post Created."
+}
+```
 
 **Notes:**
 - `Content` is rich-text HTML (same editor as chapters — Quill.js)
@@ -173,8 +177,11 @@ TODO: Document exact response body (likely returns PostKey)
 ```
 
 **Response:** `200 OK`
-
-TODO: Document exact response body
+```json
+{
+  "Message": "Post Updated."
+}
+```
 
 **Notes:**
 - Only `PostKey`, `Content`, `PostTitle`, `IsScheduled`, `ReleaseDate` are sent
