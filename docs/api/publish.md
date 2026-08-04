@@ -127,7 +127,26 @@ Every author has at least one "Page" (identified by `PageKey`). Publishing alway
 
 ### Unpublish Chapter
 
-TODO: Endpoint not yet discovered. Tried `/api/story/publish/remove` — returns 404.
+**Endpoint:** `POST https://reamstories.com:5002/api/story/publish/delete`
+
+**Request Body:**
+```json
+{
+  "PublishRecordKey": 2482212
+}
+```
+
+**Response:** `200 OK`
+```json
+{
+  "Message": "Chapter Unpublished."
+}
+```
+
+**Notes:**
+- `PublishRecordKey` is obtained from the `publish/list` response
+- Removes a single chapter-tier publish record
+- To fully unpublish a chapter from all tiers, call once per `PublishRecordKey`
 
 ## Tier Properties
 

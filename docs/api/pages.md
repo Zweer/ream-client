@@ -186,6 +186,42 @@ Every author on Ream has at least one "Page" — a public-facing profile that ho
 }
 ```
 
+### Search Members/Subscribers
+
+**Endpoint:** `POST https://reamstories.com:5001/api/user/stripe/subscription/search-page`
+
+**Request Body:**
+```json
+{
+  "PageKey": "<page-key>",
+  "NumberToShowPerPage": 10,
+  "PageNumber": 0,
+  "NameEmail": "",
+  "TierKeys": [],
+  "IsFollowingTierIncluded": false,
+  "Statuses": ["active"],
+  "IsMuted": "Include Muted",
+  "IsBanned": "Remove Banned"
+}
+```
+
+**Response:** `200 OK`
+```json
+{
+  "Members": [],
+  "Total": 0
+}
+```
+
+**Notes:**
+- Paginated: `NumberToShowPerPage` + `PageNumber` (0-based)
+- `NameEmail` for text search/filtering
+- `TierKeys` array to filter by specific tiers
+- `IsFollowingTierIncluded: true` to include free followers
+- `Statuses`: `["active"]`, possibly also `"canceled"`, `"past_due"`
+- `IsMuted` / `IsBanned`: string filter values ("Include Muted", "Remove Banned")
+```
+
 ## API Ports
 
 | Port | Purpose |

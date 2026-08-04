@@ -176,7 +176,39 @@ All Story API endpoints are on **port 5002**: `https://reamstories.com:5002`
 
 **Endpoint:** `POST https://reamstories.com:5002/api/story/details/update`
 
-TODO: Document by editing a story via the UI
+**Request Body:**
+```json
+{
+  "StoryKey": "<story-key>",
+  "Title": "Updated Title",
+  "Genre": [{"Type": "primary", "Name": "Fantasy", "GenreKey": 16}],
+  "SubGenre": [],
+  "Tags": [],
+  "TriggerWarnings": [],
+  "Audience": 0,
+  "RomancePairings": null,
+  "DiversityDesignations": null,
+  "IsMature": false,
+  "GAIUsed": false,
+  "HasPublishingRights": true,
+  "BookBlurb": "<p>Updated blurb</p>",
+  "Description": "<p>Updated tagline</p>",
+  "LanguageKey": "EN"
+}
+```
+
+**Response:** `200 OK`
+```json
+{
+  "StoryKey": "mseoymii04a7ef",
+  "Message": "Story Updated."
+}
+```
+
+**Notes:**
+- `IsMature` is **required** — server returns 500 "Maturity rating should be set" without it
+- Cover is NOT included in update (likely a separate endpoint or unchanged)
+- Same fields as creation minus `CoverData`, `SmallCover`, `MediaType`
 
 ## Reference Data Endpoints
 
