@@ -170,3 +170,64 @@ Every author has at least one "Page" (identified by `PageKey`). Publishing alway
 3. **Write content** → `chapter/paragraphs/add`
 4. **Publish** → `story/publish/all` (immediate or scheduled)
 5. **Check status** → `story/publish/list`
+
+## Scheduling (Queue System)
+
+Ream uses a **queue + schedule** system for automated publishing, separate from `publish/all`:
+
+### Queue All Chapters
+
+**Endpoint:** `POST https://reamstories.com:5002/api/story/queue/all`
+
+**Request Body:**
+```json
+{
+  "PageKey": "<page-key>",
+  "StoryKey": "<story-key>",
+  "MediaType": "ebook"
+}
+```
+
+**Response:** `200 OK`
+
+### List Queued Chapters
+
+**Endpoint:** `POST https://reamstories.com:5002/api/story/queue/list`
+
+**Request Body:**
+```json
+{
+  "StoryKey": "<story-key>",
+  "PageKey": "<page-key>",
+  "MediaType": "ebook"
+}
+```
+
+**Response:** `200 OK`
+```json
+[
+  {
+    "PublishQueueKey": "msepm1870948aa0",
+    "ChapterKey": "msepkxoy6a04b30",
+    "PageKey": "msejmbmp09b640",
+    "StoryKey": "msepkxez2fda13",
+    "MediaType": "ebook"
+  }
+]
+```
+
+### Create Schedule (Auto-Publish from Queue)
+
+The scheduling system publishes queued chapters automatically on a set cadence. Configured via the UI "Create Schedule" dialog with:
+
+- **Interval**: Weekly (possibly other options)
+- **Days to Schedule**: specific weekdays
+- **Schedule Start Date**: when to begin
+- **Chapters to Publish**: how many chapters per release
+
+TODO: Document the `schedule/create` API endpoint (not captured from network yet — discovered via UI dialog only)
+
+**Notes:**
+- `publish/all` with a future `PublishDate` does NOT schedule — it publishes immediately regardless
+- Scheduling requires: 1) Queue chapters via `queue/all`, 2) Create a schedule via the scheduling endpoint
+- Queued chapters appear in `queue/list` and are consumed by the schedule

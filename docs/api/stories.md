@@ -207,8 +207,9 @@ All Story API endpoints are on **port 5002**: `https://reamstories.com:5002`
 
 **Notes:**
 - `IsMature` is **required** — server returns 500 "Maturity rating should be set" without it
-- Cover is NOT included in update (likely a separate endpoint or unchanged)
-- Same fields as creation minus `CoverData`, `SmallCover`, `MediaType`
+- Cover CAN be updated via this endpoint — include `CoverData` and `SmallCover` (base64 data URIs)
+- If cover fields are omitted, the cover remains unchanged
+- Same fields as creation; `MediaType` is also accepted but optional
 
 ## Reference Data Endpoints
 
