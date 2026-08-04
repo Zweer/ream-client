@@ -26,7 +26,15 @@ function loadEnv(): { email: string; password: string } {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
     const [key, ...valueParts] = trimmed.split('=');
-    vars[key.trim()] = valueParts.join('=').trim();
+    let value = valueParts.join('=').trim();
+    // Strip surrounding quotes
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    vars[key.trim()] = value;
   }
 
   const email = vars.REAM_EMAIL;

@@ -43,8 +43,8 @@ function createSession(): Session {
 }
 
 describe('HttpClient', () => {
-  describe('port inference', () => {
-    it('should route /api/user/* to port 5001', async () => {
+  describe('request routing', () => {
+    it('should route /api/user/* requests', async () => {
       server.use(
         http.post(`${BASE_URL}:5001/api/user/settings/get`, () => {
           return HttpResponse.json({ Message: 'Success.' });
@@ -57,7 +57,7 @@ describe('HttpClient', () => {
       expect(result).toEqual({ Message: 'Success.' });
     });
 
-    it('should route /api/page/* to port 5003', async () => {
+    it('should route /api/page/* requests', async () => {
       server.use(
         http.post(`${BASE_URL}:5003/api/page/get`, () => {
           return HttpResponse.json({ Page: {}, Message: 'Success.' });
@@ -70,7 +70,7 @@ describe('HttpClient', () => {
       expect(result).toEqual({ Page: {}, Message: 'Success.' });
     });
 
-    it('should route /api/story/* to port 5002', async () => {
+    it('should route /api/story/* requests', async () => {
       server.use(
         http.post(`${BASE_URL}:5002/api/story/user/list`, () => {
           return HttpResponse.json({ Stories: [], Message: 'Success.' });

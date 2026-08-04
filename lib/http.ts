@@ -34,6 +34,11 @@ const DEFAULT_RETRY_DELAY_MS = 1000;
 /**
  * Internal HTTP client that handles authentication headers, retry logic,
  * and error mapping for the Ream API.
+ *
+ * Ream exposes its API on dedicated ports:
+ * - 5001: User API (auth, settings, notifications)
+ * - 5002: Story API (stories, chapters, publish, media)
+ * - 5003: Page API (pages, tiers, posts)
  */
 export class HttpClient {
   private readonly baseUrl: string;
