@@ -218,14 +218,118 @@ Ream uses a **queue + schedule** system for automated publishing, separate from 
 
 ### Create Schedule (Auto-Publish from Queue)
 
-The scheduling system publishes queued chapters automatically on a set cadence. Configured via the UI "Create Schedule" dialog with:
+**Endpoint:** `POST https://reamstories.com:5002/api/story/schedule/create`
 
-- **Interval**: Weekly (possibly other options)
-- **Days to Schedule**: specific weekdays
-- **Schedule Start Date**: when to begin
-- **Chapters to Publish**: how many chapters per release
+**Request Body:**
+```json
+{
+  "PageKey": "<page-key>",
+  "StoryKey": "<story-key>",
+  "dateOfEachDay": ["2026-08-10 12:00:00.000"],
+  "Interval": "1week",
+  "Tiers": [
+    {
+      "TierKey": "msejmbmp09f1fe11",
+      "PageKey": "msejmbmp09b640",
+      "Name": "Followers",
+      "Level": "0",
+      "DescHidden": 0,
+      "Description": "...",
+      "Cost": 0,
+      "CostType": "usd",
+      "Frequency": "never",
+      "IsArchived": 0,
+      "MemberLimit": null,
+      "MembersNumber": 0,
+      "Color": null,
+      "CreatedDate": "2026-08-04T10:56:36.000Z",
+      "StripeLinkId": null,
+      "StripeLinkUrl": null,
+      "StripePriceItemId": null,
+      "StripeProductId": null,
+      "StripeAccountId": null,
+      "IsPublicTier": 0,
+      "IsFollowingTier": 1,
+      "IncludesPhysicalGoods": 0,
+      "CustomWelcomeMessage": null,
+      "NoShipSetting": null,
+      "ImageUrl": ""
+    }
+  ],
+  "NumberOfChapters": 1,
+  "TimeZone": "Europe/Rome",
+  "MediaType": "ebook"
+}
+```
 
-TODO: Document the `schedule/create` API endpoint (not captured from network yet — discovered via UI dialog only)
+**Response:** `200 OK`
+
+**Notes:**
+- `dateOfEachDay` is an array of dates (format: `"YYYY-MM-DD HH:mm:ss.SSS"`) — one entry per scheduled day within the interval
+- `Interval`: `"1week"` (possibly other values like `"2week"`, `"1day"`)
+- `Tiers`: full Tier object array (same as used in `publish/all`)
+- `NumberOfChapters`: how many queued chapters to publish per scheduled release
+- `TimeZone`: user's timezone for correct scheduling
+
+### List Schedules
+
+**Endpoint:** `POST https://reamstories.com:5002/api/story/schedule/list`
+
+**Request Body:**
+```json
+{
+  "StoryKey": "<story-key>",
+  "PageKey": "<page-key>",
+  "MediaType": "ebook"
+}
+```
+
+**Response:** `200 OK`
+```json
+[
+  [
+    {
+      "NumberOfChapters": 1,
+      "TierKeys": "msejmbmp09f1fe11",
+      "Starts": "2026-08-10T14:00:00.000Z",
+      "ScheduleKey": "mseq8fbw08c0da",
+      "PageKey": "msejmbmp09b640",
+      "ScheduleGroupKey": "mseq8fbw1a07e1",
+      "DateInterval": "1week",
+      "TimeZone": "Europe/Rome",
+      "Interval": "WEEK",
+      "IntervalValue": "1"
+    }
+  ]
+]
+```
+
+**Notes:**
+- Response is a nested array (array of schedule groups)
+- `ScheduleGroupKey` identifies a schedule for deletion
+- `Starts` is the next scheduled publish date (UTC)
+- `DateInterval` / `Interval` + `IntervalValue` describe the cadence
+
+### Delete Schedule
+
+**Endpoint:** `POST https://reamstories.com:5002/api/story/schedule/delete`
+
+**Request Body:**
+```json
+{
+  "ScheduleGroupKey": "<schedule-group-key>",
+  "PageKey": "<page-key>",
+  "StoryKey": "<story-key>",
+  "MediaType": "ebook"
+}
+```
+
+**Response:** `200 OK`
+```json
+{
+  "Message": "Schedule Deleted"
+}
+```
 
 **Notes:**
 - `publish/all` with a future `PublishDate` does NOT schedule — it publishes immediately regardless
