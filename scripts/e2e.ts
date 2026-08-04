@@ -464,7 +464,7 @@ async function run(): Promise<void> {
   // --------------------------------------------------------------------------
   // Summary
   // --------------------------------------------------------------------------
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${'='.repeat(60)}`);
   console.log(`\n📊 Results: ${passCount} passed, ${failCount} failed\n`);
 
   if (failCount > 0) {

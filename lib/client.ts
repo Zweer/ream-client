@@ -96,8 +96,9 @@ export class ReamClient {
    * Subsequent calls return the cached session.
    */
   async ensureAuthenticated(): Promise<Session> {
-    if (this.httpClient.getSession()) {
-      return this.httpClient.getSession()!;
+    const existingSession = this.httpClient.getSession();
+    if (existingSession) {
+      return existingSession;
     }
 
     if (!this.loginPromise) {

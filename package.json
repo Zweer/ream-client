@@ -43,7 +43,9 @@
   "scripts": {
     "build": "tsdown",
     "clean": "rimraf dist",
+    "prelint": "npm run build",
     "lint": "concurrently npm:lint:* --prefixColors auto",
+    "postlint": "npm run clean",
     "lint:engines": "ls-engines",
     "lint:format": "biome check --write",
     "lint:lockfile": "lockfile-lint",

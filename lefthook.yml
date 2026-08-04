@@ -1,14 +1,10 @@
 pre-commit:
   piped: true
   commands:
-    format:
-      glob: "*.{ts,json,yaml,md,css}"
-      run: npm run lint:format
+    biome:
+      glob: "*.{ts,json,yaml,md,css,html}"
+      run: npx biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
       stage_fixed: true
-      priority: 1
-    lockfile:
-      glob: "package-lock.json"
-      run: npm run lint:lockfile
       priority: 1
     package-lint:
       glob: "package.json"
@@ -18,6 +14,14 @@ pre-commit:
       glob: "package.json"
       run: npm run lint:sort_package
       stage_fixed: true
+      priority: 1
+    lockfile:
+      glob: "package-lock.json"
+      run: npm run lint:lockfile
+      priority: 1
+    engines:
+      glob: "package.json"
+      run: npm run lint:engines
       priority: 1
     build:
       glob: "*.ts"
