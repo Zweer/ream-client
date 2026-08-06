@@ -11,16 +11,16 @@
     "fiction",
     "serial"
   ],
-  "homepage": "https://github.com/Zweer/ream#readme",
+  "homepage": "https://github.com/Zweer/ream-client#readme",
   "bugs": {
-    "url": "https://github.com/Zweer/ream/issues"
+    "url": "https://github.com/Zweer/ream-client/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zweer/ream.git"
+    "url": "git+https://github.com/Zweer/ream-client.git"
   },
   "license": "MIT",
-  "author": "Niccolò Vanin",
+  "author": "Zweer <n.olivieriachille@gmail.com>",
   "type": "module",
   "exports": {
     ".": {
