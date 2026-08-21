@@ -1,6 +1,6 @@
 {
   "name": "@zweer/ream-client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A TypeScript client for Ream's internal API. Publish, manage, and automate stories programmatically.",
   "keywords": [
     "ream",
