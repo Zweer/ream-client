@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/Zweer/ream-client/compare/v1.0.2...v1.0.3) (2026-08-21)
+
+
+### Bug Fixes
+
+* :truck: update repository URLs after rename to substack-client ([7b497fa](https://github.com/Zweer/ream-client/commit/7b497fa08a6757e26ebd3eaf49903e48c06a7930))
+
 ## [1.0.2](https://github.com/Zweer/ream-client/compare/v1.0.1...v1.0.2) (2026-08-04)
 
 
